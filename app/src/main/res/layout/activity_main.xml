@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="yyk.decoratinghouses.MainActivity"
-    android:gravity="center_horizontal">
+    tools:context="yyk.decoratinghouses.MainActivity">
 
-    <yyk.decoratinghouses.composant.TitleBar
+    <yyk.decoratinghouses.components.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@android:color/holo_blue_bright"
         app:title="装修计算器">
 
-    </yyk.decoratinghouses.composant.TitleBar>
+    </yyk.decoratinghouses.components.TitleBar>
     <TextView
-        android:id="@+id/qgfl_textView"
-        style="@style/long_button_style"
-        android:text="轻工辅料"/>
-
-</LinearLayout>
+        android:id="@+id/message"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#CC000000"/>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation"/>
+</RelativeLayout>

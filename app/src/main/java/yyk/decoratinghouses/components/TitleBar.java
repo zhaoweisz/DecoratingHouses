@@ -1,4 +1,4 @@
-package yyk.decoratinghouses.composant;
+package yyk.decoratinghouses.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">装修计算器</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_qgfl">轻辅</string>
+    <string name="title_zc">主材</string>
+    <string name="title_jj">家居</string>
+    <string name="title_dq">电器</string>
+    <string name="title_my">我的</string>
 </resources>
