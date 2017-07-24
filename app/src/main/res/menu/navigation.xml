@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_qgfl"
+        android:icon="@mipmap/ic_build_black_24dp"
+        android:title="@string/title_qgfl"/>
+
+    <item
+        android:id="@+id/navigation_zc"
+        android:icon="@mipmap/ic_local_dining_black_24dp"
+        android:title="@string/title_zc"/>
+
+    <item
+        android:id="@+id/navigation_jj"
+        android:icon="@mipmap/ic_weekend_black_24dp"
+        android:title="@string/title_jj"/>
+    <item
+        android:id="@+id/navigation_dq"
+        android:icon="@mipmap/ic_settings_input_svideo_black_24dp"
+        android:title="@string/title_dq"/>
+    <item
+        android:id="@+id/navigation_my"
+        android:icon="@mipmap/ic_person_black_24dp"
+        android:title="@string/title_my"/>
+</menu>
