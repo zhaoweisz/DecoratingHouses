@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="yyk.decoratinghouses.MainActivity"
+    android:gravity="center_horizontal">
+
+    <yyk.decoratinghouses.composant.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/holo_blue_bright"
+        app:title="装修计算器">
+
+    </yyk.decoratinghouses.composant.TitleBar>
+    <TextView
+        android:id="@+id/qgfl_textView"
+        style="@style/long_button_style"
+        android:text="轻工辅料"/>
+
+</LinearLayout>
