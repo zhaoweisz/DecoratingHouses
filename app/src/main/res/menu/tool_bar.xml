@@ -2,6 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/add"
-        android:title="添加方案"
-        android:icon="@mipmap/ic_add_white_24dp"/>
+        android:title="添加方案" />
+    <item
+        android:id="@+id/delete"
+        android:title="删除方案" />
 </menu>

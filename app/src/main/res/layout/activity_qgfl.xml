@@ -6,10 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="yyk.decoratinghouses.QgflActivity">
-    <yyk.decoratinghouses.components.TitleBar
-        android:id="@+id/title_bar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@android:color/holo_blue_bright"
-        app:title="" />
+        app:navigationIcon="@mipmap/ic_arrow_back_white_24dp">
+
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>

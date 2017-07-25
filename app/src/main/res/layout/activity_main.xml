@@ -8,29 +8,20 @@
     android:orientation="vertical"
     tools:context="yyk.decoratinghouses.MainActivity">
 
-    <yyk.decoratinghouses.components.TitleBar
-        android:id="@+id/title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@android:color/holo_blue_bright"
-        app:title="装修计算器">
-
-    </yyk.decoratinghouses.components.TitleBar>
     <android.support.v7.widget.Toolbar
-        android:layout_below="@+id/title_bar"
-        android:layout_marginTop="10dp"
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@android:color/holo_blue_bright"
-        app:navigationIcon="@mipmap/ic_arrow_back_white_24dp">
+        app:title="装修计算器"
+        app:titleTextColor="#FFFFFF">
 
     </android.support.v7.widget.Toolbar>
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="56dp"
         android:layout_marginBottom="56dp">
     </FrameLayout>
 

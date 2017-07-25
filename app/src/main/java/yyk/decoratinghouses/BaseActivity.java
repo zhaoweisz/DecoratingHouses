@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -31,6 +32,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        if(Build.VERSION.SDK_INT >= 21) {
+            window.setEnterTransition(new Fade());
+            window.setExitTransition(new Fade());
+        }
         Log.i("BaseActivity", getClass().getSimpleName());
         mApplicationContext = getApplicationContext();
         mBaseContext = this;

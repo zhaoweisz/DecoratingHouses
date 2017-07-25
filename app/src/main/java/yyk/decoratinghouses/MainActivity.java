@@ -7,25 +7,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import yyk.decoratinghouses.components.TitleBar;
 import yyk.decoratinghouses.presenter.MainPrensenter;
 import yyk.decoratinghouses.view.IMainView;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
-    @BindView(R.id.title_bar)
-    TitleBar mTitleBar;
     @BindView(R.id.navigation)
     BottomNavigationView mNavigation;
     @BindView(R.id.fragment)
     FrameLayout mFragment;
+    @BindView(R.id.tool_bar)
+    Toolbar mToolBar;
 
     private MainPrensenter mMainPrensenter;
     private FragmentManager mFragmentManager;
@@ -36,16 +33,11 @@ public class MainActivity extends BaseActivity implements IMainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mTitleBar.setLeftIconVisible(false);
-        mTitleBar.setRightIconVisible(true);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        toolbar.inflateMenu(R.menu.tool_bar);
-        toolbar.setOverflowIcon(getResources().getDrawable(R.mipmap.ic_more_vert_white_24dp));
+        mToolBar.inflateMenu(R.menu.tool_bar);
+        mToolBar.setOverflowIcon(getResources().getDrawable(R.mipmap.ic_more_vert_white_24dp));
 
         mMainPrensenter = new MainPrensenter(this);
         mMainPrensenter.getFragments();
-
         mFragmentManager = getSupportFragmentManager();
 
         BottomNavigationViewHelper.disableShiftMode(mNavigation);
@@ -82,7 +74,7 @@ public class MainActivity extends BaseActivity implements IMainView {
     private void replaceFragment(Fragment fragment) {
         mTransaction = mFragmentManager.beginTransaction();
         if (!fragment.isAdded()) {
-            mTransaction.replace(R.id.fragment,fragment);
+            mTransaction.replace(R.id.fragment, fragment);
             mTransaction.commit();
         }
     }
