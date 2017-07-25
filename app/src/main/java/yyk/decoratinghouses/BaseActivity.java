@@ -31,13 +31,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Window window = getWindow();
+//        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        if(Build.VERSION.SDK_INT >= 21) {
+//            window.setEnterTransition(new Fade());
+//            window.setExitTransition(new Fade());
+//        }
         super.onCreate(savedInstanceState);
-        Window window = getWindow();
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        if(Build.VERSION.SDK_INT >= 21) {
-            window.setEnterTransition(new Fade());
-            window.setExitTransition(new Fade());
-        }
         Log.i("BaseActivity", getClass().getSimpleName());
         mApplicationContext = getApplicationContext();
         mBaseContext = this;

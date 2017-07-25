@@ -3,6 +3,7 @@ package yyk.decoratinghouses;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 
 import butterknife.BindView;
@@ -21,7 +22,7 @@ public class QgflActivity extends AppCompatActivity {
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
     }
