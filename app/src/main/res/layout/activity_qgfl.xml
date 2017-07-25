@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yyk.decoratinghouses.view.QgflActivity">
+    tools:context="yyk.decoratinghouses.QgflActivity">
     <yyk.decoratinghouses.components.TitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"

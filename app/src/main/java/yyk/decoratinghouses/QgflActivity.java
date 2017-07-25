@@ -1,4 +1,4 @@
-package yyk.decoratinghouses.view;
+package yyk.decoratinghouses;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
