@@ -6,14 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import yyk.decoratinghouses.BaseActivity;
-import yyk.decoratinghouses.QgflActivity;
 import yyk.decoratinghouses.R;
 
 /**
@@ -23,9 +22,15 @@ public class MyFragment extends Fragment {
 
     BaseActivity mBaseActivity;
 
-    @BindView(R.id.text)
-    TextView mText;
     Unbinder unbinder;
+    @BindView(R.id.qgfl_setting)
+    RelativeLayout mQgflSetting;
+    @BindView(R.id.zc_setting)
+    RelativeLayout mZcSetting;
+    @BindView(R.id.jj_setting)
+    RelativeLayout mJjSetting;
+    @BindView(R.id.dq_setting)
+    RelativeLayout mDqSetting;
 
     public MyFragment() {
         // Required empty public constructor
@@ -47,9 +52,17 @@ public class MyFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.text)
-    public void onClick() {
-        mText.setText("已点击");
-        ((BaseActivity) getActivity()).startActivityBase(QgflActivity.class,null,null);
+    @OnClick({R.id.qgfl_setting, R.id.zc_setting, R.id.jj_setting, R.id.dq_setting})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.qgfl_setting:
+                break;
+            case R.id.zc_setting:
+                break;
+            case R.id.jj_setting:
+                break;
+            case R.id.dq_setting:
+                break;
+        }
     }
 }
