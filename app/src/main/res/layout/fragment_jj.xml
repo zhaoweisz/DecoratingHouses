@@ -5,10 +5,25 @@
              tools:context="yyk.decoratinghouses.fragment.JjFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
+    <yyk.decoratinghouses.components.FragmentToolBar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+    </yyk.decoratinghouses.components.FragmentToolBar>
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_marginTop="56dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/jj"/>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

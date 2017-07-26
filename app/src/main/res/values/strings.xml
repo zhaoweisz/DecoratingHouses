@@ -9,4 +9,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dq">电器</string>
+    <string name="qgfl">轻工辅料</string>
+    <string name="jj">家居</string>
+    <string name="my">我的</string>
+    <string name="zc">主材</string>
 </resources>

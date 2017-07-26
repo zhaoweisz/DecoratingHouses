@@ -3,4 +3,5 @@
     <color name="colorPrimary">@android:color/holo_blue_bright</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorToolTitle">#FFFFFF</color>
 </resources>

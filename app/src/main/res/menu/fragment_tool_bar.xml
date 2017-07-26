@@ -4,6 +4,6 @@
         android:id="@+id/add"
         android:title="添加方案" />
     <item
-        android:id="@+id/delete"
-        android:title="删除方案" />
+        android:id="@+id/update"
+        android:title="修改参数" />
 </menu>

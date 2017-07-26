@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,51 +20,51 @@ public class MainActivity extends BaseActivity implements IMainView {
 
     @BindView(R.id.navigation)
     BottomNavigationView mNavigation;
-    @BindView(R.id.fragment)
-    FrameLayout mFragment;
-    @BindView(R.id.tool_bar)
-    Toolbar mToolBar;
+    @BindView(R.id.fragment_container)
+    FrameLayout mFragmentContainer;
 
     private MainPrensenter mMainPrensenter;
-    private FragmentManager mFragmentManager;
-    private FragmentTransaction mTransaction;
+    private int lastShowFragment = 0;
+    private Fragment[] mFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mToolBar.inflateMenu(R.menu.tool_bar);
-        mToolBar.setOverflowIcon(getResources().getDrawable(R.mipmap.ic_more_vert_white_24dp));
 
         mMainPrensenter = new MainPrensenter(this);
         mMainPrensenter.getFragments();
-        mFragmentManager = getSupportFragmentManager();
 
         BottomNavigationViewHelper.disableShiftMode(mNavigation);
-        mNavigation.setSelectedItemId(R.id.navigation_qgfl);
     }
 
     @Override
     public void getFragments(final Fragment[] fragments) {
+        mFragments = fragments;
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, fragments[0])
+                .show(fragments[0])
+                .commit();
         mNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_qgfl:
-                        replaceFragment(fragments[0]);
+                        showFragment(0);
                         return true;
                     case R.id.navigation_zc:
-                        replaceFragment(fragments[1]);
+                        showFragment(1);
                         return true;
                     case R.id.navigation_jj:
-                        replaceFragment(fragments[2]);
+                        showFragment(2);
                         return true;
                     case R.id.navigation_dq:
-                        replaceFragment(fragments[3]);
+                        showFragment(3);
                         return true;
                     case R.id.navigation_my:
-                        replaceFragment(fragments[4]);
+                        showFragment(4);
                         return true;
                 }
                 return false;
@@ -71,11 +72,21 @@ public class MainActivity extends BaseActivity implements IMainView {
         });
     }
 
-    private void replaceFragment(Fragment fragment) {
-        mTransaction = mFragmentManager.beginTransaction();
-        if (!fragment.isAdded()) {
-            mTransaction.replace(R.id.fragment, fragment);
-            mTransaction.commit();
+    private void showFragment(int index) {
+        if(lastShowFragment != index) {
+            switchFragment(lastShowFragment, index);
+            lastShowFragment = index;
+        } else {
+            Toast.makeText(this, "刷新fragment" + index, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void switchFragment(int lastIndex, int index) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(mFragments[lastIndex]);
+        if (!mFragments[index].isAdded()) {
+            transaction.add(R.id.fragment_container, mFragments[index]);
+        }
+        transaction.show(mFragments[index]).commitAllowingStateLoss();
     }
 }
