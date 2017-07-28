@@ -5,5 +5,5 @@
         android:title="添加方案" />
     <item
         android:id="@+id/update"
-        android:title="修改参数" />
+        android:title="修改选项" />
 </menu>

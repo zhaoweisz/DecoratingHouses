@@ -1,6 +1,7 @@
 package yyk.decoratinghouses.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import yyk.decoratinghouses.BaseActivity;
+import yyk.decoratinghouses.ParamsSettingActivity;
 import yyk.decoratinghouses.R;
 
 /**
@@ -20,7 +22,8 @@ import yyk.decoratinghouses.R;
  */
 public class MyFragment extends Fragment {
 
-    BaseActivity mBaseActivity;
+    private Context context;
+    private BaseActivity baseActivity;
 
     Unbinder unbinder;
     @BindView(R.id.qgfl_setting)
@@ -43,6 +46,8 @@ public class MyFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         unbinder = ButterKnife.bind(this, view);
+        context = getActivity();
+        baseActivity = (BaseActivity) context;
         return view;
     }
 
@@ -56,6 +61,7 @@ public class MyFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.qgfl_setting:
+                baseActivity.startActivityBase(ParamsSettingActivity.class,null,null);
                 break;
             case R.id.zc_setting:
                 break;
