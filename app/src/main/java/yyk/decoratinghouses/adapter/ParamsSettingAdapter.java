@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import yyk.decoratinghouses.R;
-import yyk.decoratinghouses.bean.ZcOpitions;
+import yyk.decoratinghouses.bean.Opition;
 
 /**
  * Created by YYK on 2017/7/28.
@@ -17,12 +17,12 @@ import yyk.decoratinghouses.bean.ZcOpitions;
 
 public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdapter.ViewHolder> {
 
-    private List<ZcOpitions> mZcOpitionses;
+    private List<Opition> mOpitionses;
     private onItemClickListener mOnItemClickListener;
     private onItemLongClickListener mOnItemLongClickListener;
 
-    public ParamsSettingAdapter(List<ZcOpitions> zcOpitionses) {
-        mZcOpitionses = zcOpitionses;
+    public ParamsSettingAdapter(List<Opition> opitionses) {
+        mOpitionses = opitionses;
     }
 
     @Override
@@ -33,9 +33,9 @@ public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        ZcOpitions zcOpitions = mZcOpitionses.get(position);
-        holder.name.setText(zcOpitions.getName());
-        holder.num.setText(zcOpitions.getNumber() + zcOpitions.getUnit());
+        Opition opition = mOpitionses.get(position);
+        holder.name.setText(opition.getName());
+        holder.num.setText(opition.getNumber() + opition.getUnit());
         if(mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,7 +58,7 @@ public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdap
 
     @Override
     public int getItemCount() {
-        return mZcOpitionses.size();
+        return mOpitionses.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -44,24 +44,39 @@
     </style>
 
     <style name="TextInputLayoutStyle" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginLeft">24dp</item>
         <item name="android:layout_marginRight">24dp</item>
     </style>
 
+    <style name="TextInputLayoutLineStyle" parent="AppTheme">
+        <item name="android:colorControlNormal">@color/list_press</item>
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+    </style>
+
     <style name="TextInputEditText" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingTop">8dp</item>
-        <item name="android:background">@drawable/edittext_bg</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorTitleText</item>
         <item name="android:textColorHint">@color/hintColor</item>
+
     </style>
 
-    <style name="hintAppearance" parent="AppTheme">
+    <style name="hintAppearanceStyle" parent="AppTheme">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">12sp</item>
+
+    </style>
+
+    <style name="errorTextAppearanceStyle" parent="AppTheme">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="dialogButtonItemStyle" parent="AppTheme">

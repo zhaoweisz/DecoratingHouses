@@ -15,4 +15,5 @@
     <string name="jj">家居</string>
     <string name="my">我的</string>
     <string name="zc">主材</string>
+    <string name="settingTransitionName">settingTransition</string>
 </resources>

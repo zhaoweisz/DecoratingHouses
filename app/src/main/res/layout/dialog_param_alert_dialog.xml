@@ -16,30 +16,28 @@
         android:text="添加选项"/>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/name_textInputLaoyout"
         style="@style/TextInputLayoutStyle"
-        app:hintTextAppearance="@style/hintAppearance">
+        android:theme="@style/TextInputLayoutLineStyle"
+        app:hintTextAppearance="@style/hintAppearanceStyle"
+        app:errorTextAppearance="@style/errorTextAppearanceStyle">>
         <android.support.design.widget.TextInputEditText
             android:id="@+id/name_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="请输入选项名称"
             style="@style/TextInputEditText"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
+        android:id="@+id/num_TextInputLayout"
         style="@style/TextInputLayoutStyle"
-        app:hintTextAppearance="@style/hintAppearance">
+        android:theme="@style/TextInputLayoutLineStyle"
+        app:hintTextAppearance="@style/hintAppearanceStyle"
+        app:errorTextAppearance="@style/errorTextAppearanceStyle">
         <android.support.design.widget.TextInputEditText
             android:id="@+id/num_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="请输入数量"
             style="@style/TextInputEditText"
-            android:inputType="number"/>
+            android:inputType="numberDecimal"/>
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout

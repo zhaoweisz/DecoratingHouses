@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import yyk.decoratinghouses.presenter.MainPrensenter;
+import yyk.decoratinghouses.presenter.MainPresenter;
 import yyk.decoratinghouses.view.IMainView;
 
 public class MainActivity extends BaseActivity implements IMainView {
@@ -23,20 +21,24 @@ public class MainActivity extends BaseActivity implements IMainView {
     @BindView(R.id.fragment_container)
     FrameLayout mFragmentContainer;
 
-    private MainPrensenter mMainPrensenter;
+    private MainPresenter mMainPresenter;
     private int lastShowFragment = 0;
     private Fragment[] mFragments;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    void initView() {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mMainPrensenter = new MainPrensenter(this);
-        mMainPrensenter.getFragments();
+        mMainPresenter = new MainPresenter(this);
+        mMainPresenter.getFragments();
 
         BottomNavigationViewHelper.disableShiftMode(mNavigation);
+    }
+
+    @Override
+    void initData() {
+
     }
 
     @Override

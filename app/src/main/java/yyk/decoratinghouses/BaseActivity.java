@@ -29,6 +29,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected NotificationManager notificationManager;
     protected boolean isOnCreate = true;
 
+    abstract void initView();
+    abstract void initData();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        Window window = getWindow();
@@ -45,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         isOnCreate = false;
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        initView();
     }
 
     public Context getContext() {
@@ -82,7 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mBaseIntent.setClass(mBaseContext, activityClass);
         startNextActivity(mBaseIntent, view, viewName);
     }
-    public void startActivityBase(Class<?> activityClass,Bundle bundle, View view, String viewName) {
+    public void startActivityBase(Class<?> activityClass, Bundle bundle, View view, String viewName) {
         mBaseIntent.putExtras(bundle);
         mBaseIntent.setClass(mBaseContext, activityClass);
         startNextActivity(mBaseIntent, view, viewName);
@@ -116,10 +120,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else {
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
     }
 }

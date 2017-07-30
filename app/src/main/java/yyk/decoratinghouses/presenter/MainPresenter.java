@@ -7,12 +7,12 @@ import yyk.decoratinghouses.view.IMainView;
  * Created by YYK on 2017/7/25.
  */
 
-public class MainPrensenter {
+public class MainPresenter {
 
     private IMainView mainView;
     private MainModel mMainModel;
 
-    public MainPrensenter(IMainView mainView) {
+    public MainPresenter(IMainView mainView) {
         this.mainView = mainView;
         mMainModel = new MainModel();
     }

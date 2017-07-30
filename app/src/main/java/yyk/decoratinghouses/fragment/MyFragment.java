@@ -22,10 +22,6 @@ import yyk.decoratinghouses.R;
  */
 public class MyFragment extends Fragment {
 
-    private Context context;
-    private BaseActivity baseActivity;
-
-    Unbinder unbinder;
     @BindView(R.id.qgfl_setting)
     RelativeLayout mQgflSetting;
     @BindView(R.id.zc_setting)
@@ -34,6 +30,12 @@ public class MyFragment extends Fragment {
     RelativeLayout mJjSetting;
     @BindView(R.id.dq_setting)
     RelativeLayout mDqSetting;
+
+    Unbinder unbinder;
+    private Context context;
+    private BaseActivity baseActivity;
+
+    private Bundle mBundle;
 
     public MyFragment() {
         // Required empty public constructor
@@ -48,6 +50,8 @@ public class MyFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         context = getActivity();
         baseActivity = (BaseActivity) context;
+        mBundle = new Bundle();
+
         return view;
     }
 
@@ -61,13 +65,24 @@ public class MyFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.qgfl_setting:
-                baseActivity.startActivityBase(ParamsSettingActivity.class,null,null);
+                mBundle.putLong("d_id",1);
+                mBundle.putString("d_name", "轻工辅料");
+                baseActivity.startActivityBase(ParamsSettingActivity.class,mBundle,null,null);
                 break;
             case R.id.zc_setting:
+                mBundle.putLong("d_id",2);
+                mBundle.putString("d_name", "主材");
+                baseActivity.startActivityBase(ParamsSettingActivity.class,mBundle,null,null);
                 break;
             case R.id.jj_setting:
+                mBundle.putLong("d_id",3);
+                mBundle.putString("d_name", "家居");
+                baseActivity.startActivityBase(ParamsSettingActivity.class,mBundle,null,null);
                 break;
             case R.id.dq_setting:
+                mBundle.putLong("d_id",4);
+                mBundle.putString("d_name", "电器");
+                baseActivity.startActivityBase(ParamsSettingActivity.class,mBundle,null,null);
                 break;
         }
     }
