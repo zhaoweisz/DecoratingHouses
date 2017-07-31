@@ -9,8 +9,7 @@
     <yyk.decoratinghouses.components.ParameterSettingsToolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:transitionName="@string/settingTransitionName">
+        android:layout_height="56dp">
     </yyk.decoratinghouses.components.ParameterSettingsToolbar>
 
     <android.support.v4.widget.SwipeRefreshLayout

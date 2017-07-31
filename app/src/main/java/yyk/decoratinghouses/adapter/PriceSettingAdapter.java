@@ -10,32 +10,34 @@ import java.util.List;
 
 import yyk.decoratinghouses.R;
 import yyk.decoratinghouses.bean.Opition;
+import yyk.decoratinghouses.bean.Price;
 
 /**
  * Created by YYK on 2017/7/28.
  */
 
-public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdapter.ViewHolder> {
+public class PriceSettingAdapter extends RecyclerView.Adapter<PriceSettingAdapter.ViewHolder> {
 
-    private List<Opition> mOpitionses;
+    private List<Price> mPrices;
     private onItemClickListener mOnItemClickListener;
     private onItemLongClickListener mOnItemLongClickListener;
 
-    public ParamsSettingAdapter(List<Opition> opitionses) {
-        mOpitionses = opitionses;
+    public PriceSettingAdapter(List<Price> prices) {
+        mPrices = prices;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_params_setting, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_price_setting, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Opition opition = mOpitionses.get(position);
-        holder.name.setText(opition.getName());
-        holder.num.setText(opition.getNumber() + opition.getUnit());
+        Price price = mPrices.get(position);
+        holder.name.setText(price.getName());
+        holder.price.setText(price.getPrice() + "元/" + price.getUnit());
+        holder.total.setText(price.getTotal() + "元");
         if(mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,7 +52,7 @@ public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdap
                 @Override
                 public boolean onLongClick(View view) {
                     mOnItemLongClickListener.onItemLongClick(holder.itemView,position);
-                    return true;
+                    return false;
                 }
             });
         }
@@ -58,18 +60,20 @@ public class ParamsSettingAdapter extends RecyclerView.Adapter<ParamsSettingAdap
 
     @Override
     public int getItemCount() {
-        return mOpitionses.size();
+        return mPrices.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        TextView num;
+        TextView price;
+        TextView total;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            num = itemView.findViewById(R.id.num);
+            price = itemView.findViewById(R.id.price);
+            total = itemView.findViewById(R.id.total);
         }
     }
 

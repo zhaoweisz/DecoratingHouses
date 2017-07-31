@@ -33,10 +33,12 @@ public class Price implements Parcelable {
     private float number;
     @NotNull
     private float total;
-    @Generated(hash = 1854784257)
+    @NotNull
+    private String unit;
+    @Generated(hash = 1170407404)
     public Price(Long id, @NotNull String name, float price, @NotNull Long o_id,
             @NotNull String o_name, @NotNull Long d_id, @NotNull String d_name,
-            float number, float total) {
+            float number, float total, @NotNull String unit) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -46,6 +48,7 @@ public class Price implements Parcelable {
         this.d_name = d_name;
         this.number = number;
         this.total = total;
+        this.unit = unit;
     }
     @Generated(hash = 812905808)
     public Price() {
@@ -112,7 +115,7 @@ public class Price implements Parcelable {
             return new Price(parcel.readLong(), parcel.readString(),
                     parcel.readFloat(),parcel.readLong(),parcel.readString(),
                     parcel.readLong(),parcel.readString(),
-                    parcel.readFloat(),parcel.readFloat());
+                    parcel.readFloat(),parcel.readFloat(),parcel.readString());
         }
 
         @Override
@@ -137,5 +140,12 @@ public class Price implements Parcelable {
         parcel.writeString(getD_name());
         parcel.writeFloat(getNumber());
         parcel.writeFloat(getTotal());
+        parcel.writeString(getUnit());
+    }
+    public String getUnit() {
+        return this.unit;
+    }
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

@@ -43,7 +43,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/list_bg"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:transitionName="@string/settingTransitionName">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -72,7 +73,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/list_bg"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:transitionName="@string/settingTransitionName">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -101,7 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/list_bg"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:transitionName="@string/settingTransitionName">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -130,7 +133,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/list_bg"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:transitionName="@string/settingTransitionName">
 
                     <ImageView
                         android:layout_width="wrap_content"

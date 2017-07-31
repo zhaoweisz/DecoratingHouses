@@ -28,13 +28,17 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import yyk.decoratinghouses.adapter.ParamsSettingAdapter;
+import yyk.decoratinghouses.adapter.PriceSettingAdapter;
 import yyk.decoratinghouses.bean.Opition;
+import yyk.decoratinghouses.bean.Price;
 import yyk.decoratinghouses.components.ParameterSettingsToolbar;
 import yyk.decoratinghouses.presenter.ParamsSettingPresent;
+import yyk.decoratinghouses.presenter.PriceSettingPresent;
 import yyk.decoratinghouses.util.DensityUtil;
 import yyk.decoratinghouses.view.IParamsSettingView;
+import yyk.decoratinghouses.view.IPriceSettingView;
 
-public class ParamsSettingActivity extends BaseActivity implements IParamsSettingView {
+public class PriceSettingActivity extends BaseActivity implements IPriceSettingView {
 
     @BindView(R.id.tool_bar)
     ParameterSettingsToolbar mToolBar;
@@ -49,15 +53,15 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private View dialogView;
-    private Spinner spinner;
     private TextView cancleTextView;
     private TextView confirmTextView;
     private TextInputEditText nameTextView;
-    private TextInputEditText numTextView;
+    private TextInputEditText priceTextView;
     private TextInputLayout nameInputLayout;
-    private TextInputLayout numInputLayout;
+    private TextInputLayout priceInputLayout;
     private String name;
-    private float num;
+    private float t_price;
+    private float total;
     private String unit;
 
     private PopupWindow mPopupWindow;
@@ -66,13 +70,14 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
     private TextView deleteTextView;
 
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<Opition> mOpitions;
-    private ParamsSettingAdapter mAdapter;
+    private List<Price> mPrices;
+    private PriceSettingAdapter mAdapter;
     private Bundle mBundle;
-    private Long d_id;
-    private String d_name;
+    private Long o_id;
+    private String o_name;
+    private Opition mOpition;
 
-    private ParamsSettingPresent mParamsSettingPresent;
+    private PriceSettingPresent mPriceSettingPresent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +86,15 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
 
     @Override
     protected void initView() {
-        setContentView(R.layout.activity_params_setting);
+        setContentView(R.layout.activity_price_setting);
         ButterKnife.bind(this);
         mBundle = getIntent().getExtras();
-        d_name = mBundle.getString("d_name");
-        d_id = mBundle.getLong("d_id");
-        mToolBar.setTitle(d_name + "参数");
+        mOpition = mBundle.getParcelable("opition");
+        o_name = mOpition.getName();
+        o_id = mOpition.getId();
+        mToolBar.setTitle(o_name + "品牌");
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mParamsSettingPresent = new ParamsSettingPresent(this, d_id);
+        mPriceSettingPresent = new PriceSettingPresent(this, o_id);
         builder = new AlertDialog.Builder(this);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -115,15 +121,7 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
 
     @Override
     protected void initData() {
-        mParamsSettingPresent.selectDatabase();
-    }
-
-    private int getUnitType(String unit) {
-        if("m".equals(unit)) {
-            return 0;
-        } else {
-            return 1;
-        }
+        mPriceSettingPresent.selectDatabase();
     }
 
     @Override
@@ -147,37 +145,35 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
     }
 
     @Override
-    public void showList(final List<Opition> opitions) {
-        mOpitions = opitions;
-        mAdapter = new ParamsSettingAdapter(opitions);
-        mAdapter.setOnItemLongClickListener(new ParamsSettingAdapter.onItemLongClickListener() {
+    public void showList(List<Price> prices) {
+        mPrices = prices;
+        mAdapter = new PriceSettingAdapter(prices);
+        mAdapter.setOnItemLongClickListener(new PriceSettingAdapter.onItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, int position) {
                 showPopWindow(view, position);
             }
         });
-        mAdapter.setOnItemClickListener(new ParamsSettingAdapter.onItemClickListener() {
+        mAdapter.setOnItemClickListener(new PriceSettingAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                mBundle.putParcelable("opition",opitions.get(position));
-                startActivityBase(PriceSettingActivity.class, mBundle, null, null);
+
             }
         });
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void showMyDialog(final int type, Opition opition) {
-        dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_param,null);
+    private void showMyDialog(final int type, final Price price) {
+        dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_price,null);
         dialog = builder.create();
         dialog.setView(dialogView);
         dialog.show();
-        spinner = dialogView.findViewById(R.id.spinner);
         cancleTextView = dialogView.findViewById(R.id.cancel);
         confirmTextView = dialogView.findViewById(R.id.confirm);
         nameTextView = dialogView.findViewById(R.id.name_textView);
-        numTextView = dialogView.findViewById(R.id.num_textView);
+        priceTextView = dialogView.findViewById(R.id.price_textView);
         nameInputLayout = dialogView.findViewById(R.id.name_textInputLaoyout);
-        numInputLayout = dialogView.findViewById(R.id.num_TextInputLayout);
+        priceInputLayout = dialogView.findViewById(R.id.price_TextInputLayout);
 
         nameTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -195,7 +191,7 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
 
             }
         });
-        numTextView.addTextChangedListener(new TextWatcher() {
+        priceTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -203,7 +199,7 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                numInputLayout.setErrorEnabled(false);
+                priceInputLayout.setErrorEnabled(false);
             }
 
             @Override
@@ -212,9 +208,8 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
             }
         });
         if(type == UPDATE) {
-            nameTextView.setText(opition.getName());
-            numTextView.setText(opition.getNumber() + "");
-            spinner.setSelection(getUnitType(opition.getUnit()),true);
+            nameTextView.setText(price.getName());
+            priceTextView.setText(price.getNumber() + "");
         }
         cancleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,28 +218,17 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
             }
         });
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String[] units = getResources().getStringArray(R.array.unit);
-                unit = units[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Log.d("unint","00");
-            }
-        });
-
         confirmTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 name = nameInputLayout.getEditText().getText().toString().trim();
-                String numText = numTextView.getText().toString();
-                if(validateName(name) && validateNum(numText)) {
-                    num = Float.valueOf(numText);
-                    Opition opition = new Opition(null, name, d_id, d_name ,num , unit);
-                    mParamsSettingPresent.insertOrUpdateDatabase(opition);
+                String priceText = priceTextView.getText().toString();
+                if(validateName(name) && validateNum(priceText)) {
+                    t_price = Float.valueOf(priceText);
+                    total = t_price * mOpition.getNumber();
+                    Price price = new Price(null, name, t_price, mOpition.getId(), mOpition.getName(),
+                            mOpition.getD_id(),mOpition.getD_name(),mOpition.getNumber(),total,mOpition.getUnit());
+                    mPriceSettingPresent.insertOrUpdateDatabase(price);
                     initData();
                     dialog.dismiss();
                 }
@@ -276,13 +260,13 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
             @Override
             public void onClick(View view) {
                 mPopupWindow.dismiss();
-                showMyDialog(UPDATE, mOpitions.get(position));
+                showMyDialog(UPDATE, mPrices.get(position));
             }
         });
         deleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mParamsSettingPresent.deleteDatabase(mOpitions.get(position));
+                mPriceSettingPresent.deleteDatabase(mPrices.get(position));
                 mPopupWindow.dismiss();
                 initData();
             }
@@ -298,10 +282,10 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
     }
 
     private boolean validateNum(String numText) {
-        Pattern pattern = Pattern.compile("^(([0-9]|([1-9][0-9]{0,9}))((\\.[0-9]{1,3})?))$");
+        Pattern pattern = Pattern.compile("^(([0-9]|([1-9][0-9]{0,9}))((\\.[0-9]{1,2})?))$");
         Matcher matcher = pattern.matcher(numText);
         if(!matcher.matches()) {
-            showError(numInputLayout, "数量格式错误");
+            showError(priceInputLayout, "价格格式错误");
             return false;
         }
         return true;
