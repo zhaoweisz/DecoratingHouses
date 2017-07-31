@@ -1,4 +1,4 @@
-package yyk.decoratinghouses;
+package yyk.decoratinghouses.util;
 
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;

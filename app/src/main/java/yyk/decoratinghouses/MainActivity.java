@@ -1,6 +1,5 @@
 package yyk.decoratinghouses;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import yyk.decoratinghouses.presenter.MainPresenter;
+import yyk.decoratinghouses.util.BottomNavigationViewHelper;
 import yyk.decoratinghouses.view.IMainView;
 
 public class MainActivity extends BaseActivity implements IMainView {
