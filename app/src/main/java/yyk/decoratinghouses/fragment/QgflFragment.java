@@ -3,6 +3,7 @@ package yyk.decoratinghouses.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ public class QgflFragment extends Fragment {
     @BindView(R.id.text)
     TextView mText;
     Unbinder unbinder;
+    @BindView(R.id.card_view)
+    CardView mCardView;
 
     public QgflFragment() {
         // Required empty public constructor
@@ -44,8 +47,7 @@ public class QgflFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.text)
+    @OnClick(R.id.card_view)
     public void onClick() {
-        mText.setText("已点击");
     }
 }
