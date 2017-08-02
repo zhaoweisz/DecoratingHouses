@@ -20,9 +20,6 @@ import yyk.decoratinghouses.R;
  */
 public class QgflFragment extends Fragment {
 
-
-    @BindView(R.id.text)
-    TextView mText;
     Unbinder unbinder;
     @BindView(R.id.card_view)
     CardView mCardView;
