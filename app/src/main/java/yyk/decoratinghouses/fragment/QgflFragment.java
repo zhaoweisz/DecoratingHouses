@@ -21,8 +21,6 @@ import yyk.decoratinghouses.R;
 public class QgflFragment extends Fragment {
 
     Unbinder unbinder;
-    @BindView(R.id.card_view)
-    CardView mCardView;
 
     public QgflFragment() {
         // Required empty public constructor
@@ -44,7 +42,4 @@ public class QgflFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.card_view)
-    public void onClick() {
-    }
 }

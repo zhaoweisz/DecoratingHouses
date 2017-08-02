@@ -4,29 +4,41 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by YYK on 2017/8/1.
+ * Created by wangyao on 2017/8/2.
  */
 
 @Entity
-public class Project implements Parcelable {
+public class ProjectDetail implements Parcelable {
 
+    @Id
     private Long id;
-    private String title;
+    @NotNull
+    private Long pc_id;
+    @NotNull
+    private String pc_name;
+    @NotNull
     private Long p_id;
     private String p_name;
+    @NotNull
     private float p_total;
+    @NotNull
     private Long o_id;
     private String o_name;
+    @NotNull
     private Long d_di;
     private String d_name;
-    @Generated(hash = 874993054)
-    public Project(Long id, String title, Long p_id, String p_name, float p_total,
-            Long o_id, String o_name, Long d_di, String d_name) {
+    @Generated(hash = 1937666272)
+    public ProjectDetail(Long id, @NotNull Long pc_id, @NotNull String pc_name,
+            @NotNull Long p_id, String p_name, float p_total, @NotNull Long o_id,
+            String o_name, @NotNull Long d_di, String d_name) {
         this.id = id;
-        this.title = title;
+        this.pc_id = pc_id;
+        this.pc_name = pc_name;
         this.p_id = p_id;
         this.p_name = p_name;
         this.p_total = p_total;
@@ -35,8 +47,8 @@ public class Project implements Parcelable {
         this.d_di = d_di;
         this.d_name = d_name;
     }
-    @Generated(hash = 1767516619)
-    public Project() {
+    @Generated(hash = 1285796796)
+    public ProjectDetail() {
     }
     public Long getId() {
         return this.id;
@@ -44,11 +56,17 @@ public class Project implements Parcelable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getTitle() {
-        return this.title;
+    public Long getPc_id() {
+        return this.pc_id;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPc_id(Long pc_id) {
+        this.pc_id = pc_id;
+    }
+    public String getPc_name() {
+        return this.pc_name;
+    }
+    public void setPc_name(String pc_name) {
+        this.pc_name = pc_name;
     }
     public Long getP_id() {
         return this.p_id;
@@ -101,7 +119,8 @@ public class Project implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
-        dest.writeString(this.title);
+        dest.writeValue(this.pc_id);
+        dest.writeString(this.pc_name);
         dest.writeValue(this.p_id);
         dest.writeString(this.p_name);
         dest.writeFloat(this.p_total);
@@ -111,9 +130,10 @@ public class Project implements Parcelable {
         dest.writeString(this.d_name);
     }
 
-    protected Project(Parcel in) {
+    protected ProjectDetail(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
-        this.title = in.readString();
+        this.pc_id = (Long) in.readValue(Long.class.getClassLoader());
+        this.pc_name = in.readString();
         this.p_id = (Long) in.readValue(Long.class.getClassLoader());
         this.p_name = in.readString();
         this.p_total = in.readFloat();
@@ -123,15 +143,15 @@ public class Project implements Parcelable {
         this.d_name = in.readString();
     }
 
-    public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>() {
+    public static final Parcelable.Creator<ProjectDetail> CREATOR = new Parcelable.Creator<ProjectDetail>() {
         @Override
-        public Project createFromParcel(Parcel source) {
-            return new Project(source);
+        public ProjectDetail createFromParcel(Parcel source) {
+            return new ProjectDetail(source);
         }
 
         @Override
-        public Project[] newArray(int size) {
-            return new Project[size];
+        public ProjectDetail[] newArray(int size) {
+            return new ProjectDetail[size];
         }
     };
 }
