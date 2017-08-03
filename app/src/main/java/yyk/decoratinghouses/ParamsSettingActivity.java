@@ -119,11 +119,17 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
     }
 
     private int getUnitType(String unit) {
-        if("m".equals(unit)) {
-            return 0;
-        } else {
-            return 1;
+        switch (unit) {
+            case "m":
+                return 0;
+            case "㎡":
+                return 1;
+            case "个":
+                return 2;
+            case "套":
+                return 3;
         }
+        return 0;
     }
 
     @Override

@@ -9,16 +9,14 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by wangyao on 2017/8/2.
+ * Created by YYK on 2017/8/3.
  */
 
 @Entity
 public class ProjectDetail implements Parcelable {
 
-    @Id
+    @Id(autoincrement = true)
     private Long id;
-    @NotNull
-    private Long pc_id;
     @NotNull
     private String pc_name;
     @NotNull
@@ -32,12 +30,11 @@ public class ProjectDetail implements Parcelable {
     @NotNull
     private Long d_di;
     private String d_name;
-    @Generated(hash = 1937666272)
-    public ProjectDetail(Long id, @NotNull Long pc_id, @NotNull String pc_name,
-            @NotNull Long p_id, String p_name, float p_total, @NotNull Long o_id,
-            String o_name, @NotNull Long d_di, String d_name) {
+    @Generated(hash = 2114678199)
+    public ProjectDetail(Long id, @NotNull String pc_name, @NotNull Long p_id,
+            String p_name, float p_total, @NotNull Long o_id, String o_name,
+            @NotNull Long d_di, String d_name) {
         this.id = id;
-        this.pc_id = pc_id;
         this.pc_name = pc_name;
         this.p_id = p_id;
         this.p_name = p_name;
@@ -55,12 +52,6 @@ public class ProjectDetail implements Parcelable {
     }
     public void setId(Long id) {
         this.id = id;
-    }
-    public Long getPc_id() {
-        return this.pc_id;
-    }
-    public void setPc_id(Long pc_id) {
-        this.pc_id = pc_id;
     }
     public String getPc_name() {
         return this.pc_name;
@@ -119,7 +110,6 @@ public class ProjectDetail implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
-        dest.writeValue(this.pc_id);
         dest.writeString(this.pc_name);
         dest.writeValue(this.p_id);
         dest.writeString(this.p_name);
@@ -132,7 +122,6 @@ public class ProjectDetail implements Parcelable {
 
     protected ProjectDetail(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
-        this.pc_id = (Long) in.readValue(Long.class.getClassLoader());
         this.pc_name = in.readString();
         this.p_id = (Long) in.readValue(Long.class.getClassLoader());
         this.p_name = in.readString();

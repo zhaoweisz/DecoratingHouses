@@ -23,7 +23,7 @@ import yyk.decoratinghouses.bean.PriceDao;
 
 public class BottomDialogProject extends BottomSheetDialog {
 
-    private int o_id;
+    private Long o_id;
     private Context context;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -32,12 +32,17 @@ public class BottomDialogProject extends BottomSheetDialog {
     private List<Price> mPrices;
     private PriceDao mPriceDao;
     private Price mPrice;
+    private onItemClickListener mOnItemClickListener;
 
-    public BottomDialogProject(@NonNull Context context, int o_id) {
+    public BottomDialogProject(@NonNull Context context, Long o_id) {
         super(context);
         this.o_id = o_id;
         this.context = context;
         initView();
+    }
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
     }
 
     private void initView() {
@@ -54,15 +59,17 @@ public class BottomDialogProject extends BottomSheetDialog {
         mLayoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public Price getPrice() {
         mAdapter.setOnItemClickListener(new ProjectBottomDialogAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 mPrice = mPrices.get(position);
+                mOnItemClickListener.onItemClick(mPrice);
+                dismiss();
             }
         });
-        return mPrice;
+    }
+
+    public interface onItemClickListener{
+        void onItemClick(Price mPrice);
     }
 }

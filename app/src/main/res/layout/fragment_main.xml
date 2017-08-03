@@ -3,7 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              xmlns:app="http://schemas.android.com/apk/res-auto"
-             tools:context="yyk.decoratinghouses.fragment.QgflFragment">
+             tools:context="yyk.decoratinghouses.fragment.MainFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <yyk.decoratinghouses.components.FragmentToolBar
@@ -12,6 +12,7 @@
         android:layout_height="56dp">
     </yyk.decoratinghouses.components.FragmentToolBar>
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp">

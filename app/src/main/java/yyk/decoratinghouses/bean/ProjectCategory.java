@@ -14,7 +14,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class ProjectCategory implements Parcelable {
 
-    @Id
+    @Id(autoincrement = true)
     private Long id;
     @NotNull
     private String name;

@@ -3,5 +3,7 @@
     <string-array name="unit">
         <item>m</item>
         <item>㎡</item>
+        <item>个</item>
+        <item>套</item>
     </string-array>
 </resources>
