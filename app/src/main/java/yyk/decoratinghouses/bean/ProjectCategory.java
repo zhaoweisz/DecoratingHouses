@@ -7,6 +7,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Unique;
 
 /**
  * Created by wangyao on 2017/8/2.
@@ -16,7 +17,7 @@ public class ProjectCategory implements Parcelable {
 
     @Id(autoincrement = true)
     private Long id;
-    @NotNull
+    @NotNull@Unique
     private String name;
     @NotNull
     private Long d_id;

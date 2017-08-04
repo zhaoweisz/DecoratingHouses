@@ -10,8 +10,6 @@ import java.util.List;
 
 import yyk.decoratinghouses.R;
 import yyk.decoratinghouses.bean.Opition;
-import yyk.decoratinghouses.bean.Price;
-import yyk.decoratinghouses.bean.ProjectDetail;
 
 /**
  * Created by YYK on 2017/7/28.

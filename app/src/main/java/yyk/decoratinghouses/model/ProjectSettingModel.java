@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yyk.decoratinghouses.BaseApplication;
+import yyk.decoratinghouses.bean.Opition;
+import yyk.decoratinghouses.bean.OpitionDao;
+import yyk.decoratinghouses.bean.Price;
+import yyk.decoratinghouses.bean.PriceDao;
 import yyk.decoratinghouses.bean.ProjectCategory;
 import yyk.decoratinghouses.bean.ProjectCategoryDao;
 import yyk.decoratinghouses.bean.ProjectDetail;
@@ -13,31 +17,34 @@ import yyk.decoratinghouses.bean.ProjectDetailDao;
  * Created by wangyao on 2017/7/29.
  */
 
-public class MainFragmentModel {
+public class ProjectSettingModel {
 
     private ProjectCategoryDao mProjectCategoryDao;
     private ProjectDetailDao mProjectDetailDao;
+    private PriceDao mPriceDao;
+    private OpitionDao mOpitionDao;
     private List<List<ProjectDetail>> mProjects;
     private List<ProjectCategory> mCategories;
     private List<ProjectDetail> mDetails;
+    private List<Opition> mOpitions;
+    private List<List<Price>> mPrices;
     private String categoryName;
     private Long d_id;
 
-    public MainFragmentModel(Long d_id) {
+    public ProjectSettingModel(Long d_id) {
         mProjectCategoryDao = BaseApplication.getDaoInstant().getProjectCategoryDao();
         mProjectDetailDao = BaseApplication.getDaoInstant().getProjectDetailDao();
+        mPriceDao = BaseApplication.getDaoInstant().getPriceDao();
+        mOpitionDao = BaseApplication.getDaoInstant().getOpitionDao();
         this.d_id = d_id;
         mProjects = new ArrayList<>();
+        mPrices = new ArrayList<>();
     }
 
     public void selectDatabase(OnSelectDatabaseListener selectDatabaseListener) {
+        mOpitions = mOpitionDao.queryBuilder().where(OpitionDao.Properties.D_id.eq(d_id)).list();
 
-        mCategories = mProjectCategoryDao.queryBuilder().where(ProjectCategoryDao.Properties.D_id.eq(d_id)).list();
-        for (int i = 0; i < mCategories.size(); i++) {
-            mDetails = mProjectDetailDao.queryBuilder().where(ProjectDetailDao.Properties.Pc_name.eq(mCategories.get(i).getName())).list();
-            mProjects.add(mDetails);
-        }
-        selectDatabaseListener.selectDatabaseSuccess(mCategories,mProjects);
+        selectDatabaseListener.selectDatabaseSuccess(mOpitions);
     }
 
     public void insertOrUpdataDatabase(ProjectCategory projectCatogary, List<ProjectDetail> projectDetails, OnInsertOrUpdataDatabaseListener insertOrUpdataDatabaseListener) {
@@ -51,7 +58,7 @@ public class MainFragmentModel {
     }
 
     public interface OnSelectDatabaseListener {
-        void selectDatabaseSuccess(List<ProjectCategory> categories, List<List<ProjectDetail>> mProjects);
+        void selectDatabaseSuccess(List<Opition> opitions);
         void selectDatabaseFaild();
     }
 

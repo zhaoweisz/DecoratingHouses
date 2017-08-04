@@ -9,44 +9,33 @@ import android.widget.TextView;
 import java.util.List;
 
 import yyk.decoratinghouses.R;
-import yyk.decoratinghouses.bean.ProjectCategory;
+import yyk.decoratinghouses.bean.Opition;
 import yyk.decoratinghouses.bean.ProjectDetail;
 
 /**
  * Created by YYK on 2017/7/28.
  */
 
-public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHolder> {
+public class ProjectUpdateAdapter extends RecyclerView.Adapter<ProjectUpdateAdapter.ViewHolder> {
 
-    private List<ProjectCategory> mCategories;
-    private List<List<ProjectDetail>> mProjects;
+    private List<ProjectDetail> mProjectDetails;
     private onItemClickListener mOnItemClickListener;
     private onItemLongClickListener mOnItemLongClickListener;
 
-    public FragmentAdapter(List<ProjectCategory> categories,List<List<ProjectDetail>> projects) {
-        mCategories = categories;
-        mProjects = projects;
+    public ProjectUpdateAdapter(List<ProjectDetail> projectDetails) {
+        mProjectDetails = projectDetails;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_fragment, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_setting, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        List<ProjectDetail> projectDetails = mProjects.get(position);
-        holder.primaryText.setText(mCategories.get(position).getName());
-        float sum = 0;
-        StringBuilder content = new StringBuilder();
-        for (int i = 0; i < projectDetails.size(); i++) {
-            ProjectDetail projectDetail = projectDetails.get(i);
-            sum = sum + projectDetail.getP_total();
-            content.append(projectDetail.getO_name()).append("：").append(projectDetail.getP_name()).append("\n");
-        }
-        holder.subText.setText(sum + "");
-        holder.contentText.setText(content.toString());
+        holder.nameText.setText(mProjectDetails.get(position).getO_name());
+        holder.priceNameText.setText(mProjectDetails.get(position).getP_name());
         if(mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,20 +58,18 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mCategories.size();
+        return mProjectDetails.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView primaryText;
-        TextView subText;
-        TextView contentText;
+        TextView nameText;
+        TextView priceNameText;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            primaryText = itemView.findViewById(R.id.primary_text);
-            subText = itemView.findViewById(R.id.sub_text);
-            contentText = itemView.findViewById(R.id.content_text);
+            nameText = itemView.findViewById(R.id.name_text);
+            priceNameText = itemView.findViewById(R.id.price_name_text);
         }
     }
 

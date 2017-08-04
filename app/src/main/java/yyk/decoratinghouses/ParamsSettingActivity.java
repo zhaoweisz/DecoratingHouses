@@ -149,7 +149,7 @@ public class ParamsSettingActivity extends BaseActivity implements IParamsSettin
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        }, 500);
+        }, 1000);
     }
 
     @Override

@@ -6,10 +6,11 @@ import android.os.Parcelable;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by YYK on 2017/8/3.
+ * Created by YYK on 2017/8/4.
  */
 
 @Entity
@@ -17,6 +18,8 @@ public class ProjectDetail implements Parcelable {
 
     @Id(autoincrement = true)
     private Long id;
+    @NotNull@Unique
+    private String name;
     @NotNull
     private String pc_name;
     @NotNull
@@ -30,11 +33,12 @@ public class ProjectDetail implements Parcelable {
     @NotNull
     private Long d_di;
     private String d_name;
-    @Generated(hash = 2114678199)
-    public ProjectDetail(Long id, @NotNull String pc_name, @NotNull Long p_id,
-            String p_name, float p_total, @NotNull Long o_id, String o_name,
-            @NotNull Long d_di, String d_name) {
+    @Generated(hash = 826258583)
+    public ProjectDetail(Long id, @NotNull String name, @NotNull String pc_name,
+            @NotNull Long p_id, String p_name, float p_total, @NotNull Long o_id,
+            String o_name, @NotNull Long d_di, String d_name) {
         this.id = id;
+        this.name = name;
         this.pc_name = pc_name;
         this.p_id = p_id;
         this.p_name = p_name;
@@ -52,6 +56,12 @@ public class ProjectDetail implements Parcelable {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public String getPc_name() {
         return this.pc_name;
@@ -110,6 +120,7 @@ public class ProjectDetail implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
+        dest.writeString(this.name);
         dest.writeString(this.pc_name);
         dest.writeValue(this.p_id);
         dest.writeString(this.p_name);
@@ -122,6 +133,7 @@ public class ProjectDetail implements Parcelable {
 
     protected ProjectDetail(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.name = in.readString();
         this.pc_name = in.readString();
         this.p_id = (Long) in.readValue(Long.class.getClassLoader());
         this.p_name = in.readString();

@@ -141,7 +141,7 @@ public class PriceSettingActivity extends BaseActivity implements IPriceSettingV
             public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        }, 500);
+        }, 1000);
     }
 
     @Override

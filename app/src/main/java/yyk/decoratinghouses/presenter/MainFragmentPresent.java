@@ -1,15 +1,11 @@
 package yyk.decoratinghouses.presenter;
 
 import java.util.List;
-import java.util.Map;
 
-import yyk.decoratinghouses.bean.Price;
 import yyk.decoratinghouses.bean.ProjectCategory;
 import yyk.decoratinghouses.bean.ProjectDetail;
 import yyk.decoratinghouses.model.MainFragmentModel;
-import yyk.decoratinghouses.model.PriceSettingModel;
 import yyk.decoratinghouses.view.IMainFragmentView;
-import yyk.decoratinghouses.view.IPriceSettingView;
 
 /**
  * Created by wangyao on 2017/7/29.
@@ -31,8 +27,8 @@ public class MainFragmentPresent {
         mIMainFragmentView.showLoading();
         mMainFragmentModel.selectDatabase(new MainFragmentModel.OnSelectDatabaseListener() {
             @Override
-            public void selectDatabaseSuccess(List<List<ProjectDetail>> mProjects) {
-                mIMainFragmentView.showList(mProjects);
+            public void selectDatabaseSuccess(List<ProjectCategory> categories, List<List<ProjectDetail>> mProjects) {
+                mIMainFragmentView.showList(categories, mProjects);
                 mIMainFragmentView.hideLoading();
             }
 

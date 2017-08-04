@@ -1,9 +1,8 @@
 package yyk.decoratinghouses.view;
 
 import java.util.List;
-import java.util.Map;
 
-import yyk.decoratinghouses.bean.Price;
+import yyk.decoratinghouses.bean.ProjectCategory;
 import yyk.decoratinghouses.bean.ProjectDetail;
 
 /**
@@ -14,5 +13,5 @@ public interface IMainFragmentView {
 
     void showLoading();
     void hideLoading();
-    void showList(List<List<ProjectDetail>> mProjects);
+    void showList(List<ProjectCategory> categories, List<List<ProjectDetail>> mProjects);
 }
